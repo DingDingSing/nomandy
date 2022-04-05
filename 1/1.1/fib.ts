@@ -36,3 +36,18 @@ const dpfib = (n) => {
   }
   return dp[n];
 };
+
+// 3 dp 状态压缩 优化 减少空间复杂度
+
+const dpfib_s = (n) => {
+  if (n === 0) return 0;
+  if (n == 1 || n == 2) return 1;
+  let pre = 1;
+  let cur = 1;
+  for (let i = 3; i <= n; i++) {
+    const sum = (pre + cur) % 1000000007;
+    pre = cur;
+    cur = sum;
+  }
+  return cur;
+};
